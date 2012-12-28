@@ -7,3 +7,19 @@ body {
     display: block;
     margin: 0;
 }
+
+.rickshaw_graph .x_tick {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    width: 0px;
+    border-left: 1px dotted rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+.rickshaw_graph .x_tick .title {
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    white-space: nowrap;
+    margin-left: 3px;
+    bottom: 1px;
+}
