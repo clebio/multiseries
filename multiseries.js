@@ -9,14 +9,14 @@ d3.tsv("data.tsv", function (d) {
 
     var fmt = d3.time.format("%Y%m%d");
     var x0 = fmt.parse(d[0]['date']);
-    d.forEach(function(o) { o.date = fmt.parse(o.date) - x0; });
+    d.forEach(function(o) { o.date = fmt.parse(o.date)/1000; });
 
     var dataSets = series.map(function(s) {
 	d.forEach(function(o) { o['s'] = s; } );
 	return {
 	    color: colors(s),
 	    data: d.map(function(e) {
-		return { x: parseInt(e.date), y: parseFloat(e[e.s]) };
+		return { x: e.date.valueOf(), y: parseFloat(e[e.s]) };
 	    })
 	};
     });
@@ -32,6 +32,20 @@ var multigraph = function(sets) {
 	height: height, 
 	series: sets
     });
+
+    var time = new Rickshaw.Fixtures.Time();
+    var seconds = time.unit('second');
+
+    var x_axis = new Rickshaw.Graph.Axis.Time({
+	graph: graph
+    });
+
+    var y_axis = new Rickshaw.Graph.Axis.Y( {
+        graph: graph,
+        orientation: 'left',
+        tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+        element: document.getElementById('y_axis'),
+    } );
 
     graph.render();
 
