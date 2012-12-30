@@ -14,6 +14,7 @@ d3.tsv("data.tsv", function (d) {
     var dataSets = series.map(function(s) {
 	d.forEach(function(o) { o['s'] = s; } );
 	return {
+	    name: s,
 	    color: colors(s),
 	    data: d.map(function(e) {
 		return { x: e.date.valueOf(), y: parseFloat(e[e.s]) };
@@ -28,16 +29,15 @@ var multigraph = function(sets) {
     var graph = new Rickshaw.Graph( {
 	element: document.querySelector("#chart"), 
 	renderer: 'line',
-	width: width, 
-	height: height, 
+	width: width,
+	height: height,
 	series: sets
     });
 
     var time = new Rickshaw.Fixtures.Time();
-    var seconds = time.unit('second');
-
+    var months = time.unit('month');
     var x_axis = new Rickshaw.Graph.Axis.Time({
-	graph: graph
+	graph: graph,
     });
 
     var y_axis = new Rickshaw.Graph.Axis.Y( {
@@ -47,6 +47,11 @@ var multigraph = function(sets) {
         element: document.getElementById('y_axis'),
     } );
 
-    graph.render();
 
+    var legend = new Rickshaw.Graph.Legend( {
+        element: document.getElementById('legend'),
+        graph: graph
+    } );
+
+    graph.render();
 };

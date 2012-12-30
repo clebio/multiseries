@@ -1,13 +1,37 @@
 body {
-    margin: 0 10% 0 10%;
+    margin: 0 auto 0 auto;
     width: 80%;
 }
 
-#chart {
+h1 {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 64px;
+    font-weight: 300;
+    height: 74px;
+    letter-spacing: -2px;
+}
+
+p {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    height: 72px;
+    line-height: 24px;
+}
+
+aside {
+    color: #636363;
     display: block;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 13px;
+    height: 16px;
+    left: 780px;
+    text-align: right;
+}
+
+#chart {
+    display: inline-block;
     position: relative;
-    left: 40px;
     margin: 0;
+    border: 1px solid #dedede;
 }
 
 .rickshaw_graph .x_tick {
@@ -25,14 +49,18 @@ body {
 }
 
 #chart_container {
-        position: relative;
+    display: inline;
+    position: relative;
+    width: 1000px; 
 }
 
 #y_axis {
     position: absolute;
     width: 40px;
+    left: -40px;
 }
 
-.y_grid {
-    display: none;
+#legend {
+        vertical-align: top;
+	display: inline-block;
 }
